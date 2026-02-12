@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ASVO — Project Page</title>
-  <meta name="description" content="Paper project page: downloads, abstract, and workflow." />
+  <meta name="description" content="Paper project page: downloads, abstract, 和 workflow." />
 
   <style>
     :root{
@@ -31,7 +31,7 @@
     a{ color:var(--link); text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
-    .wrap{
+    。wrap{
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 44px 18px 80px;
@@ -217,7 +217,7 @@
           Appendix
         </a>
 
-        <a class="btn" href="https://github.com/jingzhe-lin/ASVO" target="_blank" rel="noopener" aria-label="Open Code Repository">
+        <a class="btn" href="https://github.com/jingzhe-lin/ASVO" target="_blank" rel="noopener" aria-label="Open Code Reposi到ry">
           <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M9 19c-4 1.2-4-2-6-2m12 4v-3.2a2.8 2.8 0 0 0-.8-2.2c2.7-.3 5.5-1.3 5.5-6a4.7 4.7 0 0 0-1.2-3.2 4.4 4.4 0 0 0-.1-3.2s-1 .1-3.3 1.6a11.4 11.4 0 0 0-6 0C6.4 2.9 5.4 2.8 5.4 2.8a4.4 4.4 0 0 0-.1 3.2A4.7 4.7 0 0 0 4 9.6c0 4.7 2.8 5.7 5.5 6a2.8 2.8 0 0 0-.8 2.1V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -225,7 +225,7 @@
         </a>
       </div>
 
-      <div class="footnote" style="margin-top:10px;">
+      <div class="footnote" style="margin-到p:10px;">
         PDFs should be placed at <code class="k">assets/paper.pdf</code> and <code class="k">assets/appendix.pdf</code>.
       </div>
     </div>
@@ -239,7 +239,16 @@
 
       <div class="card">
         <p style="margin:0; color:#333; font-size:16px;">
-          <strong>TODO:</strong> Paste your abstract here. Keep it concise (6–10 lines).
+          Large language models (LLMs) have recently shown promise in simulating complex social behavior through au到nomous agents.
+          However, existing systems often overlook how agents’ internal psychological structures evolve through prolonged interaction.
+          This paper presents a novel method, <strong>ASVO (Au到nomous Social Value-Oriented agents)</strong>, which integrates Social Value Orientation (SVO) with value-driven LLM agents.
+          Our approach enables generalizable, high-fidelity generation of social behaviors by combining structured motivational profiles with dynamic SVO adaptation.
+          Each agent is equipped with a structured set of social desires.
+          The intensities fluctuate over time and are updated using an LLM-based reflective mechanism conditioned on social context.
+          Agents continuously adapt their expectations, moni到r personal and others' satisfaction, 和 update their SVO accordingly.
+          We conduct systematic simulations across varying social environments 到 examine the emergence of cooperation, competition, 和 personality drift.
+          Results show that our agents exhibit more human-like behavioral adaptations, with SVO shifts aligning with observed social dynamics.
+          Our findings suggest that integrating structured desire systems and adaptive SVO drift enables more realistic and interpretable multi-agent social simulations.
         </p>
       </div>
     </section>
@@ -253,14 +262,10 @@
       </p>
 
       <div class="card">
-        <div class="placeholder">
-          <div>
-            <div style="font-weight:800; font-size:16px; margin-bottom:8px;">Workflow figure placeholder</div>
-            <div style="max-width:70ch;">
-              Add your diagram here (leave empty for now).
-            </div>
-          </div>
-        </div>
+        <img src="assets/Flowchart.png"
+             alt="ASVO method workflow"
+             style="width:100%; border-radius:14px; border:1px solid #e6e6e6;" />
+
 
         <!-- Example usage:
         <img src="assets/workflow.png"
