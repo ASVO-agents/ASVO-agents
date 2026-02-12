@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ASVO — Project Page</title>
+  <title>ASVO</title>
   <meta name="description" content="Paper project page: downloads, abstract, 和 workflow." />
 
   <style>
@@ -20,18 +20,40 @@
       --btnText:#fff;
     }
 
+
     *{ box-sizing:border-box; }
     body{
       margin:0;
-      background:var(--bg);
       color:var(--text);
       font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
       line-height:1.45;
+
+      /* ✅ 背景：柔和渐变 + 两个光晕 */
+      background:
+        radial-gradient(900px 600px at 18% 8%, rgba(26,115,232,0.18), transparent 60%),
+        radial-gradient(900px 600px at 82% 18%, rgba(182,0,0,0.12), transparent 55%),
+        linear-gradient(180deg, #f7f9fc 0%, #ffffff 55%, #ffffff 100%);
+
+      /* ✅ 让页面更“干净高级” */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     a{ color:var(--link); text-decoration:none; }
     a:hover{ text-decoration:underline; }
+    /* ✅ 纯CSS噪点层（不会影响内容） */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      opacity:.06;
+      mix-blend-mode:multiply;
+    }
 
-    。wrap{
+
+    .wrap{
       max-width: var(--maxw);
       margin: 0 auto;
       padding: 44px 18px 80px;
@@ -49,12 +71,22 @@
     .title{
       font-weight: 800;
       letter-spacing: -0.02em;
-      font-size: clamp(30px, 3.4vw, 44px);  /* 比你现在小一档 */
+      font-size: clamp(28px, 3.2vw, 42px);
       line-height: 1.08;
-      margin: 0 0 14px;
+
+      max-width: min(92vw, 1500px);
+      margin: 0 auto 14px;
     }
-    .title .t1{ display:inline-block; }
-    .title .t2{ display:inline-block; font-weight: 800; }
+    .title .t1{ display:inline; }
+    .title .t2{ display:inline; font-weight: 800; }
+    /* Desktop: force the first line to stay in one line */
+@media (min-width: 900px){
+  .title .t1{
+    white-space: nowrap;
+  }
+}
+
+
     .venue{
       font-weight:700;
       color:#b11;
@@ -67,7 +99,7 @@
       margin: 0 0 10px;
       color: var(--text);
     }
-    。authors a{
+    .authors a{
       color: var(--link);
       font-weight: 500;
     }
@@ -119,7 +151,7 @@
       text-align:center;
     }
     .section h2{
-      font-size: 22px;
+      font-size: 26px;
       margin: 0 0 16px;
       letter-spacing:-0.01em;
     }
@@ -133,12 +165,87 @@
     .card{
       max-width: 980px;
       margin: 0 auto;
-      border: 1px solid #e6e6e6;
-      border-radius: 16px;
+      /*border: 1px solid #e6e6e6;*/
+      /*border-radius: 16px;*/
       padding: 18px;
       text-align:left;
       background:#fff;
     }
+
+    .citation-card{
+      background:#f8f9fb;
+      border:1px solid #e3e6ea;
+      border-radius:14px;
+      padding:20px;
+      overflow-x:auto;
+    }
+
+    .citation-card pre{
+          margin:0;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+          font-size:14px;
+          line-height:1.5;
+          color:#333;
+        }
+
+    .result-table{
+      width:auto;
+      margin:0 auto;
+      border-collapse:collapse;
+      font-size:11.5px;
+      font-family: "Times New Roman", serif;   /* 论文感 */
+      line-height:1.1;
+    }
+
+    .result-table th,
+    .result-table td{
+      border:1px solid #aaa;
+      padding:2px 4px;
+    }
+
+
+    .result-table thead{
+      background:#f5f5f5;
+      font-weight:600;
+    }
+
+    .result-table .group-row td{
+      background:#fafafa;
+      text-align:left;
+      padding:6px;
+    }
+
+    .result-table .avg-row{
+      background:#f8f8f8;
+    }
+
+.result-split{
+  display:flex;
+  gap:32px;
+  justify-content:space-between;
+  align-items:flex-start;
+
+  /* 让整体区域不要居中缩进太多（可选） */
+  max-width: min(1200px, 95vw);
+  margin: 0 auto;
+}
+
+.result-left{
+  flex: 0 0 auto;        /* 左边不拉伸 */
+}
+
+.result-right{
+  flex: 1;               /* 右边占剩余空间 */
+  min-width: 260px;
+}
+
+/* 右侧卡片可选 */
+.side-card{
+  background:#fff;
+  /*border:1px solid #e6e6e6;*/
+  /*border-radius:14px;*/
+  padding:16px;
+}
 
     .placeholder{
       border: 1.5px dashed #cfcfcf;
@@ -158,6 +265,35 @@
       background:#efefef;
       margin: 42px auto 0;
       max-width: 980px;
+    }
+    .hl{
+      color:#b11;
+      font-weight:700;
+    }
+
+    .key{
+      font-weight:700;
+    }
+
+    .blue{
+      color:#798999;
+      font-weight:500;
+      font-style: italic;
+    }
+    .yellow{
+      color:#aebea8;
+      font-weight:500;
+      font-style: italic;
+    }
+    .green{
+      color:#feda68;
+      font-weight:500;
+      font-style: italic;
+    }
+    .orange{
+      color:#f5b482;
+      font-weight:500;
+      font-style: italic;
     }
 
     footer{
@@ -189,22 +325,29 @@
 
 
       <!-- 会议/状态标签（你可以改成 AAMAS 2026 / Under Review / Preprint 等） -->
-      <div class="venue">AAMAS 2026</div>
+      <div class="venue">AAMAS  (Oral)</div>
 
       <!-- 作者：先占位，你按需要改名字/链接 -->
       <div class="authors">
-        <a href="#" target="_blank" rel="noopener">Jingzhe Lin</a><sup>*</sup>,
-        <a href="#" target="_blank" rel="noopener">Co-author</a><sup>*</sup>,
-        <a href="#" target="_blank" rel="noopener">Co-author</a>
+        <a href="#" target="_blank" rel="noopener">Jingzhe Lin</a><sup>1</sup>,
+        <a href="#" target="_blank" rel="noopener">Ceyao Zhang</a><sup>2,3</sup>,
+        <a href="https://www.yangyaodong.com/" target="_blank" rel="noopener">Yaodong Yang</a><sup>2</sup>,
+        <a href="https://cfcs.pku.edu.cn/wangyizhou/" target="_blank" rel="noopener">Yizhou Wang</a><sup>4</sup>,
+        <a href="https://zhusongchun.net/" target="_blank" rel="noopener">Song-Chun Zhu</a><sup>4,5</sup>,
+        <a href="https://fangweizhong.xyz/" target="_blank" rel="noopener">✉ Fangwei Zhong</a><sup>1</sup>
       </div>
 
       <!-- 单位：先占位 -->
       <div class="affils">
-        Beijing Normal University, Beijing, China &nbsp;·&nbsp; (More affiliations here)
+        1 School of Artificial Intelligence, Beijing Normal University, Beijing, China. <br>
+        2 School of Intelligence Science and Technology, Peking University, Beijing, China. <br>
+        3 Institute for Artificial Intelligence, Peking University, Beijing, China. <br>
+        4 Peking University, Beijing, China. <br>
+        5 Beijing Institute for General Artificial Intelligence (BIGAI), Beijing, China. <br>
       </div>
 
       <div class="footnote">
-        <span>* Core contributors</span>
+        <span>✉ Corresponding Author</span>
       </div>
 
       <!-- 按钮：Paper / Appendix / Code -->
@@ -227,11 +370,11 @@
           Appendix
         </a>
 
-        <a class="btn" href="https://github.com/jingzhe-lin/ASVO" target="_blank" rel="noopener" aria-label="Open Code Reposi到ry">
+        <a class="btn" href="https://github.com/jingzhe-lin/ASVO" target="_blank" rel="noopener" aria-label="Open Code Reposiry">
           <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M9 19c-4 1.2-4-2-6-2m12 4v-3.2a2.8 2.8 0 0 0-.8-2.2c2.7-.3 5.5-1.3 5.5-6a4.7 4.7 0 0 0-1.2-3.2 4.4 4.4 0 0 0-.1-3.2s-1 .1-3.3 1.6a11.4 11.4 0 0 0-6 0C6.4 2.9 5.4 2.8 5.4 2.8a4.4 4.4 0 0 0-.1 3.2A4.7 4.7 0 0 0 4 9.6c0 4.7 2.8 5.7 5.5 6a2.8 2.8 0 0 0-.8 2.1V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          代码
+          Code
         </a>
       </div>
 
@@ -245,15 +388,7 @@
 
       <div class="card">
         <p style="margin:0; color:#333; font-size:16px;">
-          Large language models (LLMs) have recently shown promise in simulating complex social behavior through autonomous agents. 
-          However, existing systems often overlook how agents’ internal psychological structures evolve through prolonged interaction. 
-          This paper presents a novel method, \textbf{ASVO (Autonomous Social Value-Oriented agents)}, which integrates Social Value Orientation (SVO) with value-driven LLM agents. 
-          Our approach enables generalizable, high-fidelity generation of social behaviors by combining structured motivational profiles with dynamic SVO adaptation. 
-          Each agent is equipped with a structured set of social desires. The intensities fluctuate over time and are updated using an LLM-based reflective mechanism conditioned on social context. 
-          Agents continuously adapt their expectations, monitor personal and others' satisfaction, 和 update their SVO accordingly. 
-          We conduct systematic simulations across varying social environments to examine the emergence of cooperation, competition, 和 personality drift. 
-          Results show that our agents exhibit more human-like behavioral adaptations, with SVO shifts aligning with observed social dynamics. 
-          Our findings suggest that integrating structured desire systems and adaptive SVO drift enables more realistic and interpretable multi-agent social simulations.
+          <strong class="hl">ASVO (Autonomous Social Value-Oriented agents)</strong> is a multi-agent simulation framework that combines <span class="key">Social Value Orientation (SVO)</span> with value-driven LLM agents. Instead of fixed behavior rules, agents maintain structured social desires and update them through context-aware reflection during interaction. This enables adaptive behavior over time, including shifts between cooperation and competition, and supports more realistic, interpretable social simulations.
         </p>
       </div>
     </section>
@@ -267,12 +402,261 @@
              alt="ASVO method workflow"
              style="width:100%; border-radius:14px; border:1px solid #e6e6e6;" />
 
+        <p>
+          <strong class="hl">ASVO</strong> models adaptive social motivation through
+          a structured psychological profile and dynamic SVO adaptation.
+          At each step, agents perform <span class="blue">Belief Update</span>,
+          <span class="yellow">Value Update</span>, <span class="green">SVO Calculation</span>,
+          and <span class="orange">Activity Generation</span>, forming a closed feedback loop.
+          This design enables the emergence of human-like cooperation,
+          competition, and personality drift in multi-agent social systems.
+        </p>
 
-        <!-- Example usage:
-        <img src="assets/workflow.png"
-             alt="ASVO method workflow"
-             style="width:100%; border-radius:14px; border:1px solid #e6e6e6;" />
-        -->
+      </div>
+    </section>
+
+<!-- Result -->
+<section class="section" id="results">
+  <h2>Result</h2>
+
+  <div class="result-split">
+    <!-- 左：表格 -->
+    <div class="result-left">
+      <div style="overflow-x:auto;">
+
+          <table class="result-table">
+
+            <thead>
+              <tr>
+                <th rowspan="2">LLM</th>
+                <th colspan="2">ReAct</th>
+                <th colspan="2">BabyAGI</th>
+                <th colspan="2">LLMob</th>
+                <th colspan="2">D2A</th>
+                <th colspan="2">ASVO</th>
+              </tr>
+              <tr>
+                <th>N</th><th>H</th>
+                <th>N</th><th>H</th>
+                <th>N</th><th>H</th>
+                <th>N</th><th>H</th>
+                <th>N</th><th>H</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <!-- ================= School ================= -->
+              <tr class="group-row">
+                <td colspan="11"><strong>School</strong></td>
+              </tr>
+
+              <tr>
+                <td>Deepseek</td>
+                <td>4.004</td><td>3.667</td>
+                <td>3.438</td><td>2.771</td>
+                <td>4.500</td><td>3.708</td>
+                <td>3.292</td><td>3.083</td>
+                <td><strong>4.750</strong></td><td><strong>4.792</strong></td>
+              </tr>
+
+              <tr>
+                <td>GPT-5</td>
+                <td>3.750</td><td>3.417</td>
+                <td>3.833</td><td>3.521</td>
+                <td>4.354</td><td>4.271</td>
+                <td>3.812</td><td>3.448</td>
+                <td><strong>4.958</strong></td><td><strong>4.958</strong></td>
+              </tr>
+
+              <tr>
+                <td>Gemini-2.5</td>
+                <td>3.833</td><td>3.896</td>
+                <td>3.479</td><td>3.042</td>
+                <td>4.312</td><td>4.062</td>
+                <td>3.427</td><td>3.083</td>
+                <td><strong>4.708</strong></td><td><strong>4.708</strong></td>
+              </tr>
+
+              <tr>
+                <td>Qwen3</td>
+                <td>3.917</td><td>3.521</td>
+                <td>3.458</td><td>3.188</td>
+                <td>4.271</td><td>4.021</td>
+                <td>3.677</td><td>3.406</td>
+                <td><strong>4.792</strong></td><td><strong>4.824</strong></td>
+              </tr>
+
+              <tr class="avg-row">
+                <td><strong>Avg</strong></td>
+                <td>3.876</td><td>3.625</td>
+                <td>3.552</td><td>3.130</td>
+                <td>4.359</td><td>3.938</td>
+                <td>3.552</td><td>3.255</td>
+                <td><strong>4.802</strong></td><td><strong>4.821</strong></td>
+              </tr>
+
+              <tr>
+                <td>Std</td>
+                <td>1.097</td><td>0.658</td>
+                <td>1.322</td><td>0.877</td>
+                <td>0.861</td><td>0.565</td>
+                <td>1.426</td><td>1.047</td>
+                <td><strong>0.497</strong></td><td><strong>0.456</strong></td>
+              </tr>
+
+
+              <!-- ================= Workplace ================= -->
+              <tr class="group-row">
+                <td colspan="11"><strong>Workplace</strong></td>
+              </tr>
+
+              <tr>
+                <td>Deepseek</td>
+                <td>3.214</td><td>2.385</td>
+                <td>2.455</td><td>2.397</td>
+                <td>3.253</td><td>2.609</td>
+                <td>2.849</td><td>2.479</td>
+                <td><strong>4.766</strong></td><td><strong>4.119</strong></td>
+              </tr>
+
+              <tr>
+                <td>GPT-5</td>
+                <td>3.221</td><td>3.045</td>
+                <td>3.349</td><td>3.064</td>
+                <td>4.144</td><td>3.792</td>
+                <td>3.703</td><td>3.458</td>
+                <td><strong>4.849</strong></td><td><strong>4.019</strong></td>
+              </tr>
+
+              <tr>
+                <td>Gemini-2.5</td>
+                <td>3.448</td><td>3.182</td>
+                <td>2.673</td><td>2.724</td>
+                <td>3.442</td><td>3.269</td>
+                <td>2.891</td><td>2.698</td>
+                <td><strong>4.878</strong></td><td><strong>4.034</strong></td>
+              </tr>
+
+              <tr>
+                <td>Qwen3</td>
+                <td>3.297</td><td>2.760</td>
+                <td>2.843</td><td>2.673</td>
+                <td>3.330</td><td>3.058</td>
+                <td>3.135</td><td>2.818</td>
+                <td><strong>4.782</strong></td><td><strong>4.026</strong></td>
+              </tr>
+
+              <tr class="avg-row">
+                <td><strong>Avg</strong></td>
+                <td>3.330</td><td>2.877</td>
+                <td>2.798</td><td>2.710</td>
+                <td>3.542</td><td>3.182</td>
+                <td>3.145</td><td>2.863</td>
+                <td><strong>4.819</strong></td><td><strong>4.049</strong></td>
+              </tr>
+
+              <tr>
+                <td>Std</td>
+                <td>1.568</td><td>1.063</td>
+                <td>1.358</td><td>0.968</td>
+                <td>1.463</td><td>1.088</td>
+                <td>1.444</td><td>0.991</td>
+                <td><strong>0.491</strong></td><td><strong>0.466</strong></td>
+              </tr>
+
+
+              <!-- ================= Family ================= -->
+              <tr class="group-row">
+                <td colspan="11"><strong>Family</strong></td>
+              </tr>
+
+              <tr>
+                <td>Deepseek</td>
+                <td>3.286</td><td>3.262</td>
+                <td>2.917</td><td>2.690</td>
+                <td>3.589</td><td>3.339</td>
+                <td>4.010</td><td>3.167</td>
+                <td><strong>4.750</strong></td><td><strong>3.964</strong></td>
+              </tr>
+
+              <tr>
+                <td>GPT-5</td>
+                <td>3.345</td><td>3.202</td>
+                <td>3.345</td><td>3.202</td>
+                <td>4.202</td><td>3.863</td>
+                <td>4.479</td><td>3.750</td>
+                <td><strong>4.905</strong></td><td><strong>4.024</strong></td>
+              </tr>
+
+              <tr>
+                <td>Gemini-2.5</td>
+                <td>3.726</td><td>3.488</td>
+                <td>3.423</td><td>1.433</td>
+                <td>3.845</td><td>3.429</td>
+                <td>4.031</td><td>3.615</td>
+                <td><strong>4.863</strong></td><td><strong>4.077</strong></td>
+              </tr>
+
+              <tr>
+                <td>Qwen3</td>
+                <td>4.006</td><td>3.536</td>
+                <td>3.685</td><td>3.315</td>
+                <td>4.000</td><td>3.738</td>
+                <td>4.490</td><td>3.781</td>
+                <td><strong>4.381</strong></td><td><strong>3.820</strong></td>
+              </tr>
+
+              <tr class="avg-row">
+                <td><strong>Avg</strong></td>
+                <td>3.693</td><td>3.449</td>
+                <td>3.342</td><td>3.079</td>
+                <td>3.909</td><td>3.579</td>
+                <td>4.253</td><td>3.578</td>
+                <td><strong>4.725</strong></td><td><strong>3.946</strong></td>
+              </tr>
+
+              <tr>
+                <td>Std</td>
+                <td>1.423</td><td>0.921</td>
+                <td>1.239</td><td>0.904</td>
+                <td>1.166</td><td>0.827</td>
+                <td>1.148</td><td>0.941</td>
+                <td><strong>0.624</strong></td><td><strong>0.648</strong></td>
+              </tr>
+
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+    <!-- 右：留空/放东西 -->
+    <div class="result-right">
+      <!-- 你后面要放的内容写这里 -->
+      <div class="side-card">
+        <h3>Notes</h3>
+        <p>Placeholder for additional content.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+    <!-- Citation -->
+    <section class="section" id="citation">
+      <h2>Citation</h2>
+
+      <div class="card citation-card">
+        <pre><code>@inproceedings{asvo,
+      author  = {Lin, Jingzhe and Zhang, Ceyao and Yang, Yaodong and Wang, Yizhou and Zhu, Song-Chun and Zhong, Fangwei},
+      title   = {Beyond Self-Interest: Modeling Social-Oriented Motivation for Human-like Multi-Agent Interactions},
+      booktitle = {Proceedings of the 25th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2026)},
+      year    = {2026},
+      address = {Paphos, Cyprus},
+      publisher = {Association for Computing Machinery}
+    }</code></pre>
       </div>
     </section>
 
