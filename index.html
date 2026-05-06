@@ -172,6 +172,30 @@
       background:#fff;
     }
 
+    .video-card{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px;
+      background:#fff;
+      text-align:left;
+    }
+
+    .video-frame{
+      width:100%;
+      display:block;
+      border-radius:14px;
+      border:1px solid #e6e6e6;
+      background:#000;
+      box-shadow: 0 12px 28px rgba(17, 17, 17, 0.08);
+    }
+
+    .video-note{
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+      text-align:center;
+    }
+
     .citation-card{
       background:#f8f9fb;
       border:1px solid #e3e6ea;
@@ -457,6 +481,20 @@
       <div class="card">
         <p style="margin:0; color:#333; font-size:16px;">
           <strong class="hl">ASVO (Autonomous Social Value-Oriented agents)</strong> is a multi-agent simulation framework that combines <span class="key">Social Value Orientation (SVO)</span> with value-driven LLM agents. Instead of fixed behavior rules, agents maintain structured social desires and update them through context-aware reflection during interaction. This enables adaptive behavior over time, including shifts between cooperation and competition, and supports more realistic, interpretable social simulations.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="video">
+      <h2>Explainer Video</h2>
+
+      <div class="video-card">
+        <video class="video-frame" controls preload="metadata" playsinline>
+          <source src="assets/英文版.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <p class="video-note">
+          A short walkthrough of ASVO, including the motivation, workflow, and representative multi-agent interaction cases.
         </p>
       </div>
     </section>
